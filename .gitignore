@@ -35,3 +35,4 @@ data/
 
 # Vite
 frontend/.vite/
+*.tsbuildinfo
