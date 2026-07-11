@@ -43,6 +43,7 @@ describe('Vehicle Routes', () => {
       make: 'Toyota',
       model: 'Camry',
       category: 'Sedan',
+      year: 2024,
       price: 25000,
       quantity: 5,
     });
@@ -74,6 +75,7 @@ describe('Vehicle Routes', () => {
           make: 'Honda',
           model: 'Accord',
           category: 'Sedan',
+          year: 2024,
           price: 28000,
           quantity: 3,
         });
@@ -90,6 +92,7 @@ describe('Vehicle Routes', () => {
           make: 'Honda',
           model: 'Accord',
           category: 'Sedan',
+          year: 2024,
           price: 28000,
           quantity: 3,
         });
@@ -115,6 +118,7 @@ describe('Vehicle Routes', () => {
         make: 'BMW',
         model: 'X5',
         category: 'SUV',
+        year: 2024,
         price: 60000,
         quantity: 2,
       });

@@ -6,6 +6,7 @@ describe('VehicleService', () => {
     make: 'Toyota',
     model: 'Camry',
     category: 'Sedan',
+    year: 2024,
     price: 25000,
     quantity: 5,
   };
@@ -37,6 +38,7 @@ describe('VehicleService', () => {
         make: 'Honda',
         model: 'Civic',
         category: 'Sedan',
+        year: 2024,
         price: 22000,
         quantity: 3,
       });
@@ -44,6 +46,7 @@ describe('VehicleService', () => {
         make: 'Ford',
         model: 'F-150',
         category: 'Truck',
+        year: 2024,
         price: 45000,
         quantity: 2,
       });

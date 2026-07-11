@@ -6,16 +6,22 @@ interface CreateVehicleInput {
   make: string;
   model: string;
   category: string;
+  year: number;
   price: number;
   quantity: number;
+  description?: string;
+  imageUrl?: string;
 }
 
 interface UpdateVehicleInput {
   make?: string;
   model?: string;
   category?: string;
+  year?: number;
   price?: number;
   quantity?: number;
+  description?: string;
+  imageUrl?: string;
 }
 
 export const vehicleService = {

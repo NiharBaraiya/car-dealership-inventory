@@ -4,10 +4,15 @@ export const createVehicleValidation = [
   body('make').trim().notEmpty().withMessage('Make is required'),
   body('model').trim().notEmpty().withMessage('Model is required'),
   body('category').trim().notEmpty().withMessage('Category is required'),
+  body('year')
+    .isInt({ min: 1900, max: new Date().getFullYear() + 2 })
+    .withMessage('Year must be a valid year'),
   body('price').isFloat({ min: 0 }).withMessage('Price must be a positive number'),
   body('quantity')
     .isInt({ min: 0 })
     .withMessage('Quantity must be a non-negative integer'),
+  body('description').optional().trim().isLength({ max: 1000 }),
+  body('imageUrl').optional().trim(),
 ];
 
 export const updateVehicleValidation = [
@@ -18,6 +23,10 @@ export const updateVehicleValidation = [
     .trim()
     .notEmpty()
     .withMessage('Category cannot be empty'),
+  body('year')
+    .optional()
+    .isInt({ min: 1900, max: new Date().getFullYear() + 2 })
+    .withMessage('Year must be a valid year'),
   body('price')
     .optional()
     .isFloat({ min: 0 })
@@ -26,6 +35,8 @@ export const updateVehicleValidation = [
     .optional()
     .isInt({ min: 0 })
     .withMessage('Quantity must be a non-negative integer'),
+  body('description').optional().trim().isLength({ max: 1000 }),
+  body('imageUrl').optional().trim(),
 ];
 
 export const searchVehicleValidation = [

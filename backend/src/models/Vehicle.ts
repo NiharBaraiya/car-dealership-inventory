@@ -4,8 +4,11 @@ export interface IVehicle {
   make: string;
   model: string;
   category: string;
+  year: number;
   price: number;
   quantity: number;
+  description?: string;
+  imageUrl?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -27,6 +30,21 @@ const vehicleSchema = new Schema<IVehicle>(
     category: {
       type: String,
       required: true,
+      trim: true,
+    },
+    year: {
+      type: Number,
+      required: true,
+      min: 1900,
+      max: new Date().getFullYear() + 2,
+    },
+    description: {
+      type: String,
+      trim: true,
+      maxlength: 1000,
+    },
+    imageUrl: {
+      type: String,
       trim: true,
     },
     price: {

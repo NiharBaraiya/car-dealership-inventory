@@ -8,6 +8,7 @@ const mockVehicle: Vehicle = {
   make: 'Toyota',
   model: 'Camry',
   category: 'Sedan',
+  year: 2024,
   price: 28500,
   quantity: 5,
   createdAt: '2026-01-01T00:00:00.000Z',
@@ -18,10 +19,11 @@ describe('VehicleCard', () => {
   it('renders vehicle details', () => {
     render(<VehicleCard vehicle={mockVehicle} onPurchase={vi.fn()} />);
 
-    expect(screen.getByText('Toyota Camry')).toBeInTheDocument();
+    expect(screen.getByText('Toyota')).toBeInTheDocument();
+    expect(screen.getByText('Camry')).toBeInTheDocument();
     expect(screen.getByText('Sedan')).toBeInTheDocument();
     expect(screen.getByText('$28,500')).toBeInTheDocument();
-    expect(screen.getByText('5 in stock')).toBeInTheDocument();
+    expect(screen.getByText('5 units available')).toBeInTheDocument();
   });
 
   it('disables purchase button when out of stock', () => {
@@ -30,7 +32,7 @@ describe('VehicleCard', () => {
     render(<VehicleCard vehicle={outOfStock} onPurchase={vi.fn()} />);
 
     expect(screen.getByText('Out of Stock')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Purchase' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Purchase Toyota Camry' })).toBeDisabled();
   });
 
   it('calls onPurchase when purchase button is clicked', () => {
@@ -38,7 +40,7 @@ describe('VehicleCard', () => {
 
     render(<VehicleCard vehicle={mockVehicle} onPurchase={onPurchase} />);
 
-    fireEvent.click(screen.getByRole('button', { name: 'Purchase' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Purchase Toyota Camry' }));
 
     expect(onPurchase).toHaveBeenCalledWith(mockVehicle._id);
   });
@@ -48,6 +50,8 @@ describe('VehicleCard', () => {
       <VehicleCard vehicle={mockVehicle} onPurchase={vi.fn()} purchasing />
     );
 
-    expect(screen.getByRole('button', { name: 'Processing...' })).toBeDisabled();
+    const button = screen.getByRole('button', { name: 'Purchase Toyota Camry' });
+    expect(button).toBeDisabled();
+    expect(button).toHaveTextContent('Buying...');
   });
 });

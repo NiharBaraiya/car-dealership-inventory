@@ -17,8 +17,11 @@ export interface Vehicle {
   make: string;
   model: string;
   category: string;
+  year: number;
   price: number;
   quantity: number;
+  description?: string;
+  imageUrl?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -35,12 +38,25 @@ export interface CreateVehicleInput {
   make: string;
   model: string;
   category: string;
+  year: number;
   price: number;
   quantity: number;
+  description?: string;
+  imageUrl?: string;
 }
 
 export interface ApiResponse<T> {
   success: boolean;
   data: T;
   message?: string;
+}
+
+export type SortOption = 'price-asc' | 'price-desc' | 'name-asc' | 'newest';
+
+export type ToastType = 'success' | 'error' | 'info';
+
+export interface ToastMessage {
+  id: string;
+  type: ToastType;
+  message: string;
 }

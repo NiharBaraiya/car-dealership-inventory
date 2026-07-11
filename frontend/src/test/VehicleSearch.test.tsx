@@ -6,26 +6,34 @@ describe('VehicleSearch', () => {
   it('calls onSearch with entered filter values', () => {
     const onSearch = vi.fn();
     const onClear = vi.fn();
+    const onSortChange = vi.fn();
 
-    render(<VehicleSearch onSearch={onSearch} onClear={onClear} />);
+    render(
+      <VehicleSearch
+        onSearch={onSearch}
+        onClear={onClear}
+        sort="newest"
+        onSortChange={onSortChange}
+      />
+    );
 
-    fireEvent.change(screen.getByPlaceholderText('Make'), {
+    fireEvent.change(screen.getByLabelText('Make'), {
       target: { value: 'Toyota' },
     });
-    fireEvent.change(screen.getByPlaceholderText('Model'), {
+    fireEvent.change(screen.getByLabelText('Model'), {
       target: { value: 'Camry' },
     });
-    fireEvent.change(screen.getByPlaceholderText('Category'), {
+    fireEvent.change(screen.getByLabelText('Category'), {
       target: { value: 'Sedan' },
     });
-    fireEvent.change(screen.getByPlaceholderText('Min Price'), {
+    fireEvent.change(screen.getByLabelText('Min Price'), {
       target: { value: '20000' },
     });
-    fireEvent.change(screen.getByPlaceholderText('Max Price'), {
+    fireEvent.change(screen.getByLabelText('Max Price'), {
       target: { value: '30000' },
     });
 
-    fireEvent.click(screen.getByRole('button', { name: 'Search' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Search Inventory' }));
 
     expect(onSearch).toHaveBeenCalledWith({
       make: 'Toyota',
@@ -39,12 +47,20 @@ describe('VehicleSearch', () => {
   it('clears fields and calls onClear', () => {
     const onSearch = vi.fn();
     const onClear = vi.fn();
+    const onSortChange = vi.fn();
 
-    render(<VehicleSearch onSearch={onSearch} onClear={onClear} />);
+    render(
+      <VehicleSearch
+        onSearch={onSearch}
+        onClear={onClear}
+        sort="newest"
+        onSortChange={onSortChange}
+      />
+    );
 
-    const makeInput = screen.getByPlaceholderText('Make');
+    const makeInput = screen.getByLabelText('Make');
     fireEvent.change(makeInput, { target: { value: 'Honda' } });
-    fireEvent.click(screen.getByRole('button', { name: 'Clear' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Reset Filters' }));
 
     expect(onClear).toHaveBeenCalled();
     expect(makeInput).toHaveValue('');

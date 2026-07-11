@@ -36,3 +36,7 @@ data/
 # Vite
 frontend/.vite/
 *.tsbuildinfo
+
+# Uploaded vehicle images
+backend/uploads/vehicles/*
+!backend/uploads/vehicles/.gitkeep
