@@ -1,3 +1,5 @@
+import { API_URL } from './constants';
+
 export const VEHICLE_CATEGORIES = [
   'Sedan',
   'SUV',
@@ -20,8 +22,12 @@ export const formatPrice = (price: number): string =>
 
 export const getVehicleImageUrl = (imageUrl?: string): string => {
   if (!imageUrl) return PLACEHOLDER_IMAGE;
-  if (imageUrl.startsWith('http')) return imageUrl;
-  return imageUrl;
+  if (imageUrl.startsWith('http') || imageUrl.startsWith('blob:') || imageUrl.startsWith('data:')) {
+    return imageUrl;
+  }
+  const baseUrl = API_URL.replace(/\/api$/, '');
+  const cleanPath = imageUrl.startsWith('/') ? imageUrl : `/${imageUrl}`;
+  return `${baseUrl}${cleanPath}`;
 };
 
 export const sortVehicles = (
