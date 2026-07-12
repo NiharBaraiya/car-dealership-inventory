@@ -47,7 +47,7 @@ docker-compose up -d
 
 **Option B — Local MongoDB:**
 
-Ensure MongoDB is running on `mongodb://localhost:27017`.
+Ensure MongoDB is running on `mongodb+srv://NiharBaraiya:NiharBaraiya@cluster0.r98pmog.mongodb.net/car_dealership?retryWrites=true&w=majority`.
 
 ### 2. Backend Setup
 
@@ -61,7 +61,7 @@ npm run dev
 
 The API runs at `http://localhost:5000`.
 
-**Default admin credentials (after seeding):**
+**Default admin credentials:**
 
 | Field    | Value                 |
 |----------|-----------------------|
@@ -131,21 +131,21 @@ npm test
 ## My AI Usage
 
 ### Tools Used
-
-- **Cursor AI (Claude)** — Primary development assistant for scaffolding, implementation, debugging, and test writing throughout the project.
+- **Cursor AI** – Project scaffolding, test generation, and debugging.
+- **ChatGPT** – Backend/frontend implementation, migration scripts, and bug fixing.
+- **Gemini (Antigravity)** – Troubleshooting MongoDB services, Atlas connectivity, and configuration issues.
 
 ### How I Used AI
 
-- **Project scaffolding:** Used Cursor to generate the initial backend folder structure (Express + TypeScript + Mongoose), route/controller/service layering, and frontend React + Vite setup with routing and auth context.
-- **API implementation:** AI helped draft the vehicle service (search filters, purchase/restock logic) and JWT auth middleware; I reviewed and adjusted validation rules and error handling manually.
-- **Frontend components:** AI generated the initial `VehicleCard`, `VehicleSearch`, and auth form components; I refined styling in `global.css` and wired API calls.
-- **Test writing:** Used AI to generate Jest unit/integration tests for the backend and Vitest component tests for the frontend, then verified edge cases (out-of-stock purchase, admin-only routes, duplicate email registration).
-- **Seed script & README:** AI assisted with the database seed script for admin bootstrap and documentation for setup instructions.
-- **Debugging:** Used AI to troubleshoot MongoDB connection issues, JWT middleware errors, and axios interceptor behavior during development.
+- **Project Scaffolding & Initial Coding**: Used Cursor to scaffold the backend and frontend components, configure initial models, and set up test cases.
+- **Database Service Troubleshooting**: Used Gemini to query the Windows services registry (`Get-Service`) to discover that the local MongoDB database service was stopped, and to troubleshoot MongoDB Atlas credential mismatches during cloud migration.
+- **Data Migrations & Seeding**: Used ChatGPT to create and run specialized migration and seeding scripts (e.g., `updateSeedImages.ts` and `forceSeed.ts`) to populate the MongoDB Atlas cluster with default inventory.
+- **Frontend Bugfix Resolution**: Used ChatGPT to diagnose and fix relative image path rendering by updating the image URL resolver function (`getVehicleImageUrl`) to route image requests directly to the correct backend port, excluding local blob previews.
+- **Testing & Code Refinement**: Used **Cursor AI** to generate initial test cases, review implementation logic, and suggest improvements to code structure, error handling, and overall application reliability.
 
 ### Reflection
 
-AI significantly accelerated boilerplate generation and test scaffolding, letting me focus on business logic and architecture decisions. The most valuable use was generating test cases that covered edge cases I might have missed (e.g., purchase when quantity is zero, admin-only route protection). However, I always reviewed AI output — for example, ensuring the auth service always hashes passwords correctly and that search queries use proper MongoDB regex filters. AI is most effective as a pair-programming partner when combined with manual review and running the test suite after each change.
+AI significantly improved my development workflow by accelerating both implementation and debugging. **Cursor AI** helped generate the initial project structure, boilerplate code, and test cases, allowing me to focus on application logic. **ChatGPT** assisted with backend and frontend implementation, migration scripts, and resolving issues related to image uploads and frontend-backend integration. **Gemini** proved valuable for diagnosing MongoDB service and Atlas connectivity problems, helping identify configuration and credential issues more efficiently. Overall, using these AI tools reduced development time, simplified troubleshooting, and enabled me to deliver a more reliable and well-tested full-stack application.
 
 ## License
 
